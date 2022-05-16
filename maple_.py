@@ -105,6 +105,9 @@ def starforce_enforce(starforce = 0):
             if starforce == 14:
                 starforce += 1
             
+            if starforce == 19:
+                starforce += 1
+            
         if starforce == 22:
             #print(f"ㅋㅋㅋ 22성 달성 {count}만큼 도전함")
             return True
