@@ -1,6 +1,6 @@
 import random
 
-def 스타포스강화(star_pos = 0):
+def starforce_enforce(starforce = 0):
     """
     star_pos -> 시작 스타포스
     리턴값 -> 22성 성공 여부(bool)
@@ -51,7 +51,7 @@ def 스타포스강화(star_pos = 0):
                     , 19 : 30
                     , 20 : 30
                     , 21 : 30
-                    }
+                        }
 
     fail_persent = {0 : 5
                 ,1 : 10
@@ -75,41 +75,41 @@ def 스타포스강화(star_pos = 0):
                 ,19 : 67.2
                 ,20 : 63.0
                 ,21 : 63.0
-    }
+                    }
 
     count = 0
     while True:
         random_num = random.random() * 100
                         # 0 ~ 100
         count += 1
-        destroy = destroy_persent[star_pos]
-        success = success_persent[star_pos]
-        fail = fail_persent[star_pos]
+        destroy = destroy_persent[starforce]
+        success = success_persent[starforce]
+        fail = fail_persent[starforce]
         if random_num <= destroy:
             #print(f"{count}번째에 터짐 아 돈만날림 {star_pos}")
             return False
         
         elif random_num <= destroy+success:
             #print(f"야 왠일 ? 성공 {star_pos}")
-            star_pos += 1 
+            starforce += 1 
         elif random_num:
             #print(f"실패함 {star_pos}")
-            star_pos -= 1
+            starforce -= 1
 
-            if star_pos == -1:
-                star_pos += 1
+            if starforce == -1:
+                starforce += 1
 
-            if star_pos == 9:
-                star_pos += 1
+            if starforce == 9:
+                starforce += 1
 
-            if star_pos == 14:
-                star_pos += 1
+            if starforce == 14:
+                starforce += 1
             
-        if star_pos == 22:
+        if starforce == 22:
             #print(f"ㅋㅋㅋ 22성 달성 {count}만큼 도전함")
             return True
 
-def 큐브강화(cube : str, start: str = "레어", end : str = "레전드리"):
+def cube_enforce(cube : str, start: str = "레어", end : str = "레전드리"):
     """
     큐브종류 -> 레드큐브, 블랙큐브, 수상한큐브, 장인의큐브, 명장의큐브
     스타트/엔드 -> 레어, 에픽, 유니크, 레전드리
