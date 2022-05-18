@@ -1,8 +1,8 @@
 import random
 
-number = [x for x in range(1,46)]
-random.shuffle(number)
+numbers = [num for num in range(1,46)]
+random.shuffle(numbers)
 
-win = number[0:6]
+win = numbers[0:6]
 win.sort()
 print(win)
