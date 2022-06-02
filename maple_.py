@@ -94,20 +94,8 @@ def starforce_enforce(starforce = 0):
             starforce += 1 
         elif random_num:
             #print(f"실패함 {star_pos}")
-            starforce -= 1
-
-            if starforce == -1:
-                starforce += 1
-
-            if starforce == 9:
-                starforce += 1
-
-            if starforce == 14:
-                starforce += 1
-            
-            if starforce == 19:
-                starforce += 1
-            
+            if starforce%5 != 0:
+                starforce -= 1
         if starforce == 22:
             #print(f"ㅋㅋㅋ 22성 달성 {count}만큼 도전함")
             return True
@@ -176,3 +164,4 @@ def cube_enforce(cube : str, start: str = "레어", end : str = "레전드리"):
                     start_gread += 1
         
     return count, money
+
