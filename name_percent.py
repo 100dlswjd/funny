@@ -60,7 +60,7 @@ MOEUM_DIC = {"ㅏ" : 2
             }
 
 
-def name_divide(korean_word):
+def name_divide(korean_word) -> list:
     r_lst = []
     for w in list(korean_word.strip()):
         if '가'<=w<='힣':
@@ -72,7 +72,7 @@ def name_divide(korean_word):
             pass
     return r_lst
 
-def name_to_number(name : list):
+def name_to_number(name : list) -> list:
     hap = list()
     for name_len in range(len(name)):
         num = 0
@@ -85,31 +85,48 @@ def name_to_number(name : list):
         hap.append(num)
     return hap
 
-def number_general(name_nos_1 : list, name_nos_2 : list):
+def number_general(nos_1 : list, nos_2 : list) -> list:
     result = list()
-    maxlen = len(name_nos_1) if len(name_nos_1) >= len(name_nos_2) else len(name_nos_2)
+    maxlen = len(nos_1) if len(nos_1) >= len(nos_2) else len(nos_2)
     for stroke in range(maxlen):
         try:
-            result.append(name_nos_1[stroke])
+            result.append(nos_1[stroke])
         except IndexError:
             pass
         try:
-            result.append(name_nos_2[stroke])
+            result.append(nos_2[stroke])
         except IndexError:
             pass
 
     return result
 
-name_1 = "테스트"
-name_2 = "연습용"
-name_1_divide = name_divide(name_1)
-name_2_divide = name_divide(name_2)
-number1 = name_to_number(name_1_divide)
-number2 = name_to_number(name_2_divide)
-print(name_1)
-print(number1)
-print(name_2)
-print(number2)
+def add_stroke(name_stroke : list ) -> int:
+    idx = 0
+    data = list()
+    while True:
+        try:
+            number = name_stroke[idx] + name_stroke[idx+1]
+            number = number%10
+            data.append(number)
+            idx += 1
+        except IndexError:
+            return data
+    pass
 
-test = number_general(number1,number2)
-print(test)
+def percent(name_stroke : list()):
+    percent = add_stroke(name_stroke)
+    while True:
+        percent = add_stroke(percent)
+        if len(percent) == 2:
+            return (percent[0] * 10) + percent[1]
+
+def name_percent(name_1 : str, name_2 : str):
+    name_1_divide = name_divide(name_1)
+    name_2_divide = name_divide(name_2)
+    number1 = name_to_number(name_1_divide)
+    number2 = name_to_number(name_2_divide)
+
+    test = number_general(number1,number2)
+    result = percent(test)
+    return result
+
