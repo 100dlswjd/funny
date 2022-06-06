@@ -61,6 +61,7 @@ MOEUM_DIC = {"ㅏ" : 2
 
 
 def name_divide(korean_word) -> list:
+    """" 출처 : https://frhyme.github.io/python/python_korean_englished/ """
     r_lst = []
     for w in list(korean_word.strip()):
         if '가'<=w<='힣':
@@ -129,4 +130,3 @@ def name_percent(name_1 : str, name_2 : str):
     test = number_general(number1,number2)
     result = percent(test)
     return result
-
