@@ -56,6 +56,7 @@ MOEUM_DIC = {"ㅏ" : 2
             , "ㅞ" : 5
             , "ㅟ" : 3
             , "ㅢ" : 2
+            , " " : 0
             }
 
 
@@ -72,9 +73,18 @@ def name_divide(korean_word):
     return r_lst
 
 def name_to(name : list):
-    print(name)
-    for le in range(len(name)):
-        pass
+    hap = list()
+    for le in range(0,3):
+        num = 0
+        for lee in range(0,3):
+            if lee == 0:
+                num += JAEUM_DIC[name[le][lee]]
+            else:
+                num += MOEUM_DIC[name[le][lee]]
+        
+        hap.append(num)
+    return hap
 
 name_1 = name_divide("테스트")
-name_to(name_1)
+number = name_to(name_1)
+print(number)
