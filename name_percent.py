@@ -33,7 +33,8 @@ JAEUM_DIC = { "ㄱ" : 2
             , 'ㄾ' : 9
             , 'ㄿ' : 9
             , 'ㅀ' : 8
-            , 'ㅄ' : 9 }
+            , 'ㅄ' : 9
+            , " " : 0 }
 
 MOEUM_DIC = {"ㅏ" : 2
             , "ㅑ" : 3
@@ -56,7 +57,6 @@ MOEUM_DIC = {"ㅏ" : 2
             , "ㅞ" : 5
             , "ㅟ" : 3
             , "ㅢ" : 2
-            , " " : 0
             }
 
 
@@ -72,19 +72,44 @@ def name_divide(korean_word):
             pass
     return r_lst
 
-def name_to(name : list):
+def name_to_number(name : list):
     hap = list()
-    for le in range(0,3):
+    for name_len in range(len(name)):
         num = 0
-        for lee in range(0,3):
-            if lee == 0:
-                num += JAEUM_DIC[name[le][lee]]
+        for jaeum_moeum in range(0,3):
+            if jaeum_moeum == 1:
+                num += MOEUM_DIC[name[name_len][jaeum_moeum]]
             else:
-                num += MOEUM_DIC[name[le][lee]]
-        
+                num += JAEUM_DIC[name[name_len][jaeum_moeum]]
+        num = num%10
         hap.append(num)
     return hap
 
-name_1 = name_divide("테스트")
-number = name_to(name_1)
-print(number)
+def number_general(name_nos_1 : list, name_nos_2 : list):
+    result = list()
+    maxlen = len(name_nos_1) if len(name_nos_1) >= len(name_nos_2) else len(name_nos_2)
+    for stroke in range(maxlen):
+        try:
+            result.append(name_nos_1[stroke])
+        except IndexError:
+            pass
+        try:
+            result.append(name_nos_2[stroke])
+        except IndexError:
+            pass
+
+    return result
+
+name_1 = "테스트"
+name_2 = "연습용"
+name_1_divide = name_divide(name_1)
+name_2_divide = name_divide(name_2)
+number1 = name_to_number(name_1_divide)
+number2 = name_to_number(name_2_divide)
+print(name_1)
+print(number1)
+print(name_2)
+print(number2)
+
+test = number_general(number1,number2)
+print(test)
